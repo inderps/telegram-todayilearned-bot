@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node build/index.js",
+    "build": "npm run test && babel src --out-dir build",
+    "dev": "npm run test && PORT=3000 babel-node src/index.js",
     "lint": "eslint src test",
-    "build": "npm run lint && ",
     "test": "npm run lint && mocha test/**/*.js --compilers js:babel-register"
   },
   "keywords": [],
@@ -24,5 +26,8 @@
     "eslint-plugin-jsx-a11y": "1.5.5",
     "eslint-plugin-react": "5.2.2",
     "mocha": "2.5.3"
+  },
+  "dependencies": {
+    "express": "4.14.0"
   }
 }
