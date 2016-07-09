@@ -1,4 +1,4 @@
-import { IO, Either } from 'ramda-fantasy';
+import { IO, Maybe } from 'ramda-fantasy';
 import localConfig from './../../reddit-config';
 
 const hasAllConfigVars = config => (config.USER_AGENT && config.CLIENT_ID
@@ -14,12 +14,12 @@ const mapConfig = config => ({
 const getConfig = IO(() => {
   const envConfig = process.env;
   if (hasAllConfigVars(envConfig)) {
-    return Either.Right(mapConfig(envConfig));
+    return Maybe(mapConfig(envConfig));
   }
   if (hasAllConfigVars(localConfig)) {
-    return Either.Right(mapConfig(localConfig));
+    return Maybe(mapConfig(localConfig));
   }
-  return Either.Left('config missing');
+  return Maybe.Nothing();
 });
 
 export default getConfig;
