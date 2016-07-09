@@ -10,4 +10,6 @@ const createSubreddit = curry((name, connection) => connection.get_subreddit(nam
 
 const getSubreddit = name => map(map(createSubreddit(name)), getRedditConnection);
 
-export { getRedditConnection, getSubreddit };
+const getTILSubreddit = getSubreddit('todayilearned');
+
+export { getRedditConnection, getSubreddit, getTILSubreddit };
