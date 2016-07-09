@@ -8,7 +8,7 @@
     "build": "npm run test && babel src --out-dir build",
     "dev": "npm run test && PORT=3000 babel-node src/index.js",
     "lint": "eslint src test",
-    "test": "npm run lint && mocha test/**/*.js --compilers js:babel-register"
+    "test": "npm run lint && mocha test/**/*.js --compilers js:babel-register --timeout 5000"
   },
   "keywords": [],
   "author": "",

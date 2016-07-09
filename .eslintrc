@@ -1,6 +1,6 @@
 {
   "extends": "airbnb",
   "rules": {
-    "new-cap": [2, {"newIsCapExceptions": ["snoowrap", "Left"], "capIsNewExceptions": ["IO", "Either", "Left", "Right", "Maybe"]}]
+    "new-cap": [2, {"newIsCapExceptions": ["snoowrap", "Left"], "capIsNewExceptions": ["IO", "Either", "Left", "Right", "Maybe", "Nothing", "Future"]}]
   }
 }

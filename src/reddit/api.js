@@ -1,15 +1,34 @@
-import { map, curry } from 'ramda';
+import { IO, Maybe, Future } from 'ramda-fantasy';
+import { map, curry, chain } from 'ramda';
 import getConfig from './getConfig';
 import snoowrap from 'snoowrap';
 
-const createConnection = config => new snoowrap(config);
+const createConnection = maybeConfig =>
+  IO.of(chain((config) => Maybe(new snoowrap(config)), maybeConfig));
 
-const getRedditConnection = map(map(createConnection), getConfig);
+const prepareTopPostsApi = maybeConnection =>
+  IO.of(map(connection => curry((name, time) => Future((reject, resolve) => {
+    connection.get_subreddit(name).get_top({ time })
+    .then(resolve)
+    .then(reject);
+  })),
+  maybeConnection));
 
-const createSubreddit = curry((name, connection) => connection.get_subreddit(name));
+const getRedditConnection = chain(createConnection, getConfig);
 
-const getSubreddit = name => map(map(createSubreddit(name)), getRedditConnection);
+const allPosts = chain(prepareTopPostsApi, getRedditConnection);
 
-const getTILSubreddit = getSubreddit('todayilearned');
+const tilPosts = map(map(posts => posts('todayilearned')), allPosts);
 
-export { getRedditConnection, getSubreddit, getTILSubreddit };
+const tilForToday = map(map(posts => posts('day')), tilPosts);
+
+// const showCurrenPost = map(map(posts => {
+//   posts.fork(err => {
+//     console.log(err);
+//   }, data => {
+//     console.log(data[0]);
+//   });
+// }), tilForToday);
+// showCurrenPost.runIO();
+
+export { getRedditConnection, tilForToday };
