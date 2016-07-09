@@ -4,7 +4,12 @@ import getConfig from './getConfig';
 import snoowrap from 'snoowrap';
 
 const createConnection = maybeConfig =>
-  IO.of(chain((config) => Maybe(new snoowrap(config)), maybeConfig));
+  IO.of(chain((config) => Maybe(new snoowrap({
+    user_agent: config.USER_AGENT,
+    client_id: config.REDDIT_CLIENT_ID,
+    client_secret: config.REDDIT_CLIENT_SECRET,
+    refresh_token: config.REDDIT_REFRESH_TOKEN,
+  })), maybeConfig));
 
 const prepareTopPostsApi = maybeConnection =>
   IO.of(map(connection => curry((name, time) => Future((reject, resolve) => {
@@ -29,6 +34,6 @@ const tilForToday = map(map(posts => posts('day')), tilPosts);
 //     console.log(data[0]);
 //   });
 // }), tilForToday);
-// showCurrenPost.runIO();
+// console.log(showCurrenPost.runIO());
 
 export { getRedditConnection, tilForToday };
