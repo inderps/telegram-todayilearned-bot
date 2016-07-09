@@ -1,0 +1,6 @@
+export default {
+  USER_AGENT: 'nodejs',
+  CLIENT_ID: 'some-id',
+  CLIENT_SECRET: 'some-secret',
+  REFRESH_TOKEN: 'some-token',
+};
