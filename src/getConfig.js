@@ -1,8 +1,8 @@
 import { IO, Maybe } from 'ramda-fantasy';
-import localConfig from './../../reddit-config';
+import localConfig from './../reddit-config';
 
 const hasAllConfigVars = config => (config.USER_AGENT && config.REDDIT_CLIENT_ID
-  && config.REDDIT_CLIENT_SECRET && config.REDDIT_REFRESH_TOKEN);
+  && config.REDDIT_CLIENT_SECRET && config.REDDIT_REFRESH_TOKEN && config.TELEGRAM_TOKEN);
 
 const mapConfig = config => ({
   USER_AGENT: config.USER_AGENT,

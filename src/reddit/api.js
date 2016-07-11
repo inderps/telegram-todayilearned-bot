@@ -1,6 +1,6 @@
 import { IO, Maybe, Future } from 'ramda-fantasy';
 import { map, curry, chain } from 'ramda';
-import getConfig from './getConfig';
+import getConfig from './../getConfig';
 import snoowrap from 'snoowrap';
 
 const createConnection = maybeConfig =>

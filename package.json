@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "express": "4.14.0",
+    "node-telegram-bot-api": "0.23.3",
     "ramda": "^0.21.0",
     "ramda-fantasy": "^0.6.0",
     "snoowrap": "^1.4.1"
