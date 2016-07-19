@@ -23,6 +23,4 @@ const getBot = chain(createBot, getConfig);
 
 const startBotServer = map(sendRedditPostOnRequest, getBot);
 
-// console.log(startBotServer.runIO());
-
 export default startBotServer;
