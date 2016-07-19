@@ -1,7 +1,7 @@
-export default {
+module.exports = {
   USER_AGENT: 'nodejs',
-  REDDIT_CLIENT_ID: 'zj7xADGzjta9OA',
-  REDDIT_CLIENT_SECRET: '-fPyLvwHcojFJJHLqc_tY7xH85E',
-  REDDIT_REFRESH_TOKEN: '31159967-OlnBDbC1PWowcVShE_37jAIl5wc',
-  TELEGRAM_TOKEN: '245374611:AAFO4MKmrMPUAAQ0SMMIjkXI0d0-Z5jwisU',
+  REDDIT_CLIENT_ID: 'some-id',
+  REDDIT_CLIENT_SECRET: 'some-secret',
+  REDDIT_REFRESH_TOKEN: 'some-token',
+  TELEGRAM_TOKEN: 'some-token',
 };
