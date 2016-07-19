@@ -1,6 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { getRedditConnection, tilForToday } from './../../src/reddit/api';
+import { map } from 'ramda';
+import { getRedditConnection, fetchRandomPost } from './../../src/reddit/api';
 
 function getClassNameOfMaybe(maybe) {
   return maybe.value.constructor.name;
@@ -13,10 +14,11 @@ describe('api', () => {
   });
 
   it('should return posts for today of til subreddit', (done) => {
-    const postsFuture = tilForToday.runIO().value;
-    postsFuture.fork(() => {}, data => {
-      expect(data.size).to.not.eql(0);
-      done();
-    });
+    map(map(postFuture => {
+      postFuture.fork(() => {}, post => {
+        expect(post).to.not.eql('');
+        done();
+      });
+    }), fetchRandomPost).runIO();
   });
 });

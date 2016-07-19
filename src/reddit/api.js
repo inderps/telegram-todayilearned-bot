@@ -27,13 +27,13 @@ const tilPosts = map(map(posts => posts('todayilearned')), allPosts);
 
 const tilForToday = map(map(posts => posts('day')), tilPosts);
 
-// const showCurrenPost = map(map(posts => {
-//   posts.fork(err => {
-//     console.log(err);
-//   }, data => {
-//     console.log(data[0]);
-//   });
-// }), tilForToday);
-// console.log(showCurrenPost.runIO());
+const findByIndex = (index, list) => list[index].title;
 
-export { getRedditConnection, tilForToday };
+const getRandomIndex = list => Math.floor(Math.random() * list.length) + 0;
+
+const getRandomPost = posts => Future((reject, resolve) =>
+resolve(findByIndex(getRandomIndex(posts), posts)));
+
+const fetchRandomPost = map(map(posts => posts.chain(getRandomPost)), tilForToday);
+
+export { getRedditConnection, fetchRandomPost };
