@@ -13,3 +13,10 @@ A nodejs based telegram bot which shows r/TIL random post. It is written with fu
 
 ### Test
 * Run `npm run test`
+
+### Interaction With Bot
+* Say `/post` to get a random TIL post for today
+
+### Want to contribute?
+
+PRs are most welcome
